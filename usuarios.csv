@@ -1,0 +1,7 @@
+ID, Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,Género,Obj_Fisico, Act_Fisica, Complexion_Fisica
+101,Rocio,Roldan,de la Rosa,30,60,159,Femenino,Rendimiento, Muy activo (Más de 3 días alguna act.física),Mesomorfo
+102,Roberto,Vargas,Gonzalez,49,80,190,Masculino,Perder peso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo
+103,Javier,Castillo,Sanchez,35,84,175,Masculino,Perder peso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo
+104,Alberto,Quero,Moreno,35,90,105,Masculino,Definición,Activo (Entre 2-3 días alguna act.física) ,Endomorfo
+105,Joel,Rodriguez,Pardo,28,70,180,No Binario,Definición,Alto rendimiento (Competiciones) ,Ectomorfo
+106,Noelia,Navarro,Lopez,33,60,165,Femenino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo
