@@ -4,29 +4,46 @@
 
 # Importación de las librerías necesarias:
 import sys
-import csv
+
+# Own modules and dependencies
+from file_handler import FileHandler
 
 from PyQt5.QtSql import *
-from PyQt5.QtCore import Qt, QModelIndex
+from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QPushButton, \
-    QTableWidget, QTableWidgetItem, QMessageBox, QHBoxLayout, QLineEdit, QLabel, \
-    QGridLayout , QComboBox, QFileDialog, QMainWindow
+from PyQt5.QtWidgets import (QWidget, QApplication, QVBoxLayout, QPushButton,
+    QTableWidget, QMessageBox, QHBoxLayout, QLineEdit, 
+    QLabel, QGridLayout , QComboBox, QFileDialog,
+    QTableWidgetItem)
+
+from pandas import concat, DataFrame
 
 
 # ---------------------------- APLICACION -------------------------------------------------
 
 # Definición de la clase Leccion que hereda de QWidget:
 class Leccion(QWidget):
+    csvPath:str = "usuarios.csv"
+    mandatoryColumns:list = [
+        'ID', 
+        'Nombre', 
+        'P_Apellido', 
+        'S_Apellido', 
+        'Edad',
+        'Peso',
+        'Altura',
+        'Genero', 
+        'Obj_Fisico',
+        'Act_Fisica',
+        'Complexion_Fisica'        
+    ]
+    
     def __init__(self, parent=None):
-        #super(Leccion, self).__init__(parent)
         super().__init__(parent)
         
         # Desarrollo de la tabla
         self.table = QTableWidget(0, 11)
-        self.table.setHorizontalHeaderLabels(['ID', 'Nombre', 'P_Apellido', 'S_Apellido',
-                                              'Edad', 'Peso', 'Altura', 'Genero', 
-                                              'Obj_Fisico', 'Act_Fisica', 'Complexion_Fisica'])
+        self.table.setHorizontalHeaderLabels(self.mandatoryColumns)
         self.table.setAlternatingRowColors(True)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
@@ -34,7 +51,7 @@ class Leccion(QWidget):
         
         # Configuración de la interfaz de usuario en el constructor de la clase:
         # Variables que almacenarán los datos
-        self.lblID = QLabel("ID:")
+        self.lblID = QLabel("DNI/NIE:")
         self.txtID = QLineEdit()
         self.txtID.setPlaceholderText("Numero identificador único (Usuario Gym)")
 
@@ -96,53 +113,55 @@ class Leccion(QWidget):
         grid.addWidget(self.lblAltura, 6, 0)
         grid.addWidget(self.txtAltura, 6, 1)
         self.Genero = QComboBox()
-        self.Genero.addItems(['Femenino'
-                            , 'Masculino'
-                            , 'No Binario'])
+        self.Genero.addItems([
+            'Femenino',
+            'Masculino',
+            'No Binario'
+            ])
         grid.addWidget(self.lblGenero, 7, 0)
         grid.addWidget(self.Genero, 7, 1)
         self.ObjFisico = QComboBox()
-        self.ObjFisico.addItems(['Ganar masa muscular'
-                            , 'Perder peso'
-                            , 'Definición'
-                            , 'Salud'
-                            , 'Rendimiento'])
+        self.ObjFisico.addItems([
+            'Ganar masa muscular',
+            'Perder peso', 
+            'Definición',
+            'Salud',
+            'Rendimiento'
+            ])
         grid.addWidget(self.lblObjFisico, 8, 0)
         grid.addWidget(self.ObjFisico, 8, 1)  
         self.Actividad = QComboBox()
-        self.Actividad.addItems(['Muy sedentario (Más de 12 horas sin act.física)'
-                            ,'Sedentario (Entre 12 - 8 horas sin act.física)'
-                            ,'Medianamente activo (1-2 días alguna act.física)' 
-                            ,'Activo (Entre 2-3 días alguna act.física)'
-                            ,'Muy activo (Más de 3 días alguna act.física)'
-                            ,'Alto rendimiento (Competiciones)'])
+        self.Actividad.addItems([
+            'Muy sedentario (Más de 12 horas sin act.física)',
+            'Sedentario (Entre 12 - 8 horas sin act.física)',
+            'Medianamente activo (1-2 días alguna act.física)',
+            'Activo (Entre 2-3 días alguna act.física)',
+            'Muy activo (Más de 3 días alguna act.física)',
+            'Alto rendimiento (Competiciones)'
+            ])
         grid.addWidget(self.lblActividad, 9, 0)
         grid.addWidget(self.Actividad, 9, 1)     
         self.CompFisica = QComboBox()
-        self.CompFisica.addItems(['Endomorfo (constitución corporal gruesa)'
-                             , 'Mesomorfo (constitución corporal atlético y musculoso)'
-                             , 'Ectomorfo (constitución corporal delgada)'])
+        self.CompFisica.addItems([
+            'Endomorfo (constitución corporal gruesa)',
+            'Mesomorfo (constitución corporal atlético y musculoso)',
+            'Ectomorfo (constitución corporal delgada)'
+            ])
         grid.addWidget(self.lblCompFisica, 10, 0)
         grid.addWidget(self.CompFisica, 10, 1)  
 
         # Botones
-        #btnCargar = QPushButton('Cargar Datos')
-        #btnCargar.clicked.connect(self.cargarDatos)
-        #btnCargar.setStyleSheet("backgroud-color: blue; color: black;")
-        btnCargarCSV = QPushButton('Cargar CSV')
-        btnCargarCSV.clicked.connect(self.cargarDatosDesdeCSV)
+        btnCargarCSV = QPushButton('Cargar CSV distinto')
+        btnCargarCSV.clicked.connect(self.readNewCSV)
         
         btnInsertar = QPushButton('Insertar')
         btnInsertar.clicked.connect(self.insertarDatos)
-        #btnInsertar.setStyleSheet("backgroud-color: green; color: black;")
         
         btnEliminar = QPushButton('Eliminar')
         btnEliminar.clicked.connect(self.eliminarDatos)
-        #btnEliminar.setStyleSheet("backgroud-color: red; color: black;")
         
         # Acciones
         hbx = QHBoxLayout()
-        #hbx.addWidget(btnCargar)
         hbx.addWidget(btnCargarCSV)
         hbx.addWidget(btnInsertar)
         hbx.addWidget(btnEliminar)
@@ -154,177 +173,146 @@ class Leccion(QWidget):
         vbx.addWidget(self.table)
 
         # Título e Icono app
-        ## PyQT :: SQLite Data Access
         self.setWindowTitle("GymkoFit - La meta eres tú")
-        self.setWindowIcon(QtGui.QIcon('..\img\gymkofit.png'))
-        self.init("usuarios.db", "QSQLITE")
+        self.setWindowIcon(QtGui.QIcon(r'img\gymkofit.png'))
+        # TODO: queremos implementar esto o not needed?
+        # self.init("usuarios.db", "QSQLITE")
         self.resize(362, 320)
         self.setLayout(vbx)
+        self.cargarDatosDesdeCSV(FileHandler.createCSVIfNotExisting(self.csvPath, ",".join(self.mandatoryColumns)))
 
     # Definición de métodos de acción para interactuar con la base de datos:
     # Acción de cargar los registos de ejemplo definido más abajo.
-    def cargarDatosDesdeCSV(self):
+    def readNewCSV(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Seleccionar archivo CSV", "", "Archivos CSV (*.csv)")
+        self.cargarDatosDesdeCSV(filename)        
+
+    def cargarDatosDesdeCSV(self, filename:str):
         if filename:
-            with open(filename, newline='') as usuarios:
-                reader = csv.reader(usuarios, delimiter=',')
-                primera_fila = True  # Bandera para omitir la primera fila
-                for row in reader:
-                    if primera_fila:
-                        primera_fila = False
-                        continue  # Saltar la primera fila
+            try:
+                self.readData = FileHandler.readCSV(filename, self.mandatoryColumns)
+                self.displayData()
+                self.table.show()
+                self.csvPath = filename
+            except Exception as error:
+                QMessageBox.critical(self, "Cargando datos", f"{error}")
                 
-                    # Obtener los datos de cada fila del archivo CSV
-                    ids = int(row[0])
-                    nombre = row[1]
-                    primerapellido = row[2]
-                    segundoapellido = row[3]
-                    edad = int(row[4])
-                    peso = float(row[5])
-                    altura = int(row[6])
-                    genero = row[7]
-                    objfisico = row[8]
-                    actividad = row[9]
-                    compfisica = row[10]
-
-                    # Insertar los datos en la tabla
-                    index = self.table.rowCount()
-                    self.table.insertRow(index)
-                    self.table.setItem(index, 0, QTableWidgetItem(str(ids)))
-                    self.table.setItem(index, 1, QTableWidgetItem(nombre))
-                    self.table.setItem(index, 2, QTableWidgetItem(primerapellido))
-                    self.table.setItem(index, 3, QTableWidgetItem(segundoapellido))
-                    self.table.setItem(index, 4, QTableWidgetItem(str(edad)))
-                    self.table.setItem(index, 5, QTableWidgetItem(str(peso)))
-                    self.table.setItem(index, 6, QTableWidgetItem(str(altura)))
-                    self.table.setItem(index, 7, QTableWidgetItem(genero))
-                    self.table.setItem(index, 8, QTableWidgetItem(objfisico))
-                    self.table.setItem(index, 9, QTableWidgetItem(actividad))
-                    self.table.setItem(index, 10, QTableWidgetItem(compfisica))
+    def displayData(self) -> None:
+        """Dado cierto DataFrame, muestra los datos del mismo en la QTableView ya instanciada e inicializada."""
+        self.table.setRowCount(self.readData.shape[0])
+        for rowIndex in range(self.readData.shape[0]):
+            for columnIndex in range(self.readData.shape[1]):
+                item = QTableWidgetItem(str(self.readData.iloc[rowIndex, columnIndex]))
+                self.table.setItem(rowIndex, columnIndex, item)        
                     
-            index += 1
-            
-        self.insertarDatos()
-    
-    # Acción de insertar nuevos registros
-    def insertarDatos(self):
-        ids = int(self.txtID.text())
-        nombre = self.txtName.text()
-        primerapellido = self.txtPrimerApellido.text()
-        segundoapellido = self.txtSegundoApellido.text()
-        edad = int(self.txtEdad.text())
-        peso = float(self.txtPeso.text())
-        altura = int(self.txtAltura.text())
-        genero = self.Genero.currentText()
-        objfisico = self.ObjFisico.currentText()
-        actividad = self.Actividad.currentText()
-        compfisica = self.CompFisica.currentText()
-
-        index = self.table.rowCount()
-        self.table.insertRow(index)
-        self.table.setItem(index, 0, QTableWidgetItem(str(ids)))
-        self.table.setItem(index, 1, QTableWidgetItem(nombre))
-        self.table.setItem(index, 2, QTableWidgetItem(primerapellido))
-        self.table.setItem(index, 3, QTableWidgetItem(segundoapellido))
-        self.table.setItem(index, 4, QTableWidgetItem(str(edad)))
-        self.table.setItem(index, 5, QTableWidgetItem(str(peso)))
-        self.table.setItem(index, 6, QTableWidgetItem(str(altura)))
-        self.table.setItem(index, 7, QTableWidgetItem(genero))
-        self.table.setItem(index, 8, QTableWidgetItem(objfisico))
-        self.table.setItem(index, 9, QTableWidgetItem(actividad))
-        self.table.setItem(index, 10, QTableWidgetItem(compfisica))
-
-        # Guardar el registro en la base de datos
-        query = QSqlQuery(self.db)
-        query.prepare("INSERT INTO usuarios (ID, Nombre, P_Apellido, S_Apellido, Edad, Peso, Altura, Genero, Objetivo_Fisico, Actividad_Fisica, Complexion_Fisica) "
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-        
-        query.addBindValue(ids)
-        query.addBindValue(nombre)
-        query.addBindValue(primerapellido)
-        query.addBindValue(segundoapellido)
-        query.addBindValue(edad)
-        query.addBindValue(peso)
-        query.addBindValue(altura)
-        query.addBindValue(genero)
-        query.addBindValue(objfisico)
-        query.addBindValue(actividad)
-        query.addBindValue(compfisica)
-        query.exec()
-
-        if not query.exec():
-            QMessageBox.critical(self, "Error", "No se pudo insertar el registro en la base de datos.")
-            self.table.removeRow(index)   
-            
-        
     # Acción de eliminar registros
     def eliminarDatos(self):
-        selected_row = self.table.selectionModel().selectedRows()
-        if selected_row:
-            index = selected_row[0]
-            self.table.removeRow(index.row())
-
-            # Eliminar el registro de la base de datos
-            id = int(self.table.item(index.row(), 0).text())
-            query = QSqlQuery(self.db)
-            query.prepare("DELETE FROM usuarios WHERE ID = ?")
-            query.addBindValue(id)
-            query.exec()
-
-            QMessageBox.information(self, "Eliminar", "Registro eliminado correctamente.")
+        # Tenemos seteado SingleSelection        
+        selected_row = self.table.currentRow()
+        print(selected_row)
+        if selected_row >= 0:
+            try:
+                self.readData = self.readData.drop(index=selected_row)
+                self.table.removeRow(selected_row)
+                self.readData.to_csv(self.csvPath, index=False)
+                self.table.show()
+                QMessageBox.information(self, "Eliminar", "Registro eliminado correctamente.")
+            except Exception as error:
+                QMessageBox.critical(self, "Error al eliminar", f"No se pudo eliminar correctamente: {error}")
         else:
             QMessageBox.warning(self, "Eliminar", "Seleccione una fila para eliminar.")
-
+            
+    def insertarDatos(self) -> None:
+        try:
+            valuesToAdd = (
+                self.txtID.text(),
+                self.txtName.text(),
+                self.txtPrimerApellido.text(),
+                self.txtSegundoApellido.text(),
+                int(self.txtEdad.text()),
+                float(self.txtPeso.text()),
+                int(self.txtAltura.text()),
+                self.Genero.currentText(),
+                self.ObjFisico.currentText(),
+                self.Actividad.currentText(),
+                self.CompFisica.currentText()  
+            )
+            dataMapped = dict(zip(self.mandatoryColumns, valuesToAdd))
+            # Comprueba que el ID introducido no exista
+            if dataMapped["ID"] in self.readData["ID"].unique().tolist(): 
+                raise ValueError()
+            self.readData = concat([self.readData, DataFrame(dataMapped, index=[0])], ignore_index=True, sort=False)
+            self.readData.to_csv(self.csvPath, index=False)
+            QMessageBox.information(self, "Añadido", "Datos añadidos correctamente y guardados en el csv cargado " + 
+                                    f"({self.csvPath}).")
+        except ValueError as error:
+            QMessageBox.warning(self, f"DNI/NIE ya existente", "Ya existe un usuario con este DNI/NIE.")
+            QMessageBox.information(self, "Info", f"DNI: {dataMapped['ID']}, values: {self.readData['ID'].unique().tolist()}")
+            return
+        except Exception as error:
+            QMessageBox.critical(self, "Error al añadir datos", f"{error}")
+            return
+        try:
+            lastRow = self.readData.iloc[-1]
+            self.table.setRowCount(self.table.rowCount() + 1)
+            for columnIndex, value in enumerate(lastRow):
+                item = QTableWidgetItem(str(value))
+                self.table.setItem(self.table.rowCount() - 1, columnIndex, item)        
+        except Exception as error:
+            QMessageBox.warning(self, "Añadido", "Los datos fueron registrados pero no es posible visualizarlos en la tabla "\
+                f"debido a un error inesperado: {error}")
+            
         
-    # Métodos auxiliares para la conexión y creación de la base de datos:    
-    def db_connect(self, filename, server):
-        db = QSqlDatabase.addDatabase(server)
-        db.setDatabaseName(filename)
-        if not db.open():
-            QMessageBox.critical(None, 
-                    "Nose pudo establecer una conexión con la base de datos.",
-                    "Este ejercicio necesita compatibilidad con SQLite.\n"
-                    "Haga clic en Cancelar para salir.", QMessageBox.Cancel)
-            return False
-        return True
+# TODO: si implementamos SQLite, lo metemos, por ahora commented
+#     # Métodos auxiliares para la conexión y creación de la base de datos:    
+#     def db_connect(self, filename, server):
+#         db = QSqlDatabase.addDatabase(server)
+#         db.setDatabaseName(filename)
+#         if not db.open():
+#             QMessageBox.critical(None, 
+#                     "Nose pudo establecer una conexión con la base de datos.",
+#                     "Este ejercicio necesita compatibilidad con SQLite.\n"
+#                     "Haga clic en Cancelar para salir.", QMessageBox.Cancel)
+#             return False
+#         return True
 
-   # Creamos e insertamos nuevos registros
-    def db_create(self):
-        query = QSqlQuery()
-        query.exec_("create table if not exists person(id int primary key, "
-                    "primerapellido varchar(20), segundoapellido varchar(20), edad int, peso int, altura int, genero varchar(20), objfisico varchar(50), actividad varchar(50), compfisica varchar(50))")
-        if query.isActive():
-            print("Tabla creada correctamente")
-        else:
-            print("Error al crear la tabla:", query.lastError().text())
+#    # Creamos e insertamos nuevos registros
+#     def db_create(self):
+#         query = QSqlQuery()
+#         query.exec_("create table if not exists person(id int primary key, "
+#                     "primerapellido varchar(20), segundoapellido varchar(20), edad int, peso int, altura int, genero varchar(20), objfisico varchar(50), actividad varchar(50), compfisica varchar(50))")
+#         if query.isActive():
+#             print("Tabla creada correctamente")
+#         else:
+#             print("Error al crear la tabla:", query.lastError().text())
             
 
-    def init(self, filename, server):
-        import os
-        if not os.path.exists(filename):
-            self.db_connect(filename, server)
-            self.db_create()
-        else:
-            self.db_connect(filename, server)
-    
-    
+#     def init(self, filename, server):
+#         import os
+#         if not os.path.exists(filename):
+#             self.db_connect(filename, server)
+#             self.db_create()
+#         else:
+#             self.db_connect(filename, server)    
     
 
 # Método principal y ejecución de la aplicación:
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    db = QSqlDatabase.addDatabase("QSQLITE")
-    db.setDatabaseName("usuarios.db")
-    if not db.open():
-        QMessageBox.critical(None, "Error", "No se pudo conectar a la base de datos.")
-        sys.exit(1)
+    # TODO: just if SQLite implementation in sprint
+    # db = QSqlDatabase.addDatabase("QSQLITE")
+    # db.setDatabaseName("usuarios.db")
+    # if not db.open():
+    #     QMessageBox.critical(None, "Error", "No se pudo conectar a la base de datos.")
+    #     sys.exit(1)
 
-    query = QSqlQuery(db)
-    query.exec("CREATE TABLE IF NOT EXISTS usuarios (ID INTEGER PRIMARY KEY, Nombre TEXT, "
-               "P_Apellido TEXT, S_Apellido TEXT, Edad INTEGER, Peso REAL, Altura INTEGER, "
-               "Género TEXT, Objetivo_Físico TEXT, Actividad_Física TEXT, Complexión_Física TEXT)")
+    # query = QSqlQuery(db)
+    # query.exec("CREATE TABLE IF NOT EXISTS usuarios (ID INTEGER PRIMARY KEY, Nombre TEXT, "
+    #            "P_Apellido TEXT, S_Apellido TEXT, Edad INTEGER, Peso REAL, Altura INTEGER, "
+    #            "Género TEXT, Objetivo_Físico TEXT, Actividad_Física TEXT, Complexión_Física TEXT)")
 
     window = Leccion()
-    window.db = db  # Asignar la conexión de la base de datos al objeto Leccion
+    # TODO: just if SQLite implementation in sprint
+    # window.db = db  # Asignar la conexión de la base de datos al objeto Leccion
     window.show()
     sys.exit(app.exec_())
