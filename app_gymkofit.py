@@ -9,12 +9,12 @@ import sys
 from file_handler import FileHandler
 
 from PyQt5.QtSql import *
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import (Qt, QDate)
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import (QWidget, QApplication, QVBoxLayout, QPushButton,
     QTableWidget, QMessageBox, QHBoxLayout, QLineEdit, 
     QLabel, QGridLayout , QComboBox, QFileDialog,
-    QTableWidgetItem)
+    QTableWidgetItem, QDateEdit, QMainWindow, QAction)
 
 from pandas import concat, DataFrame
 
@@ -35,14 +35,15 @@ class Leccion(QWidget):
         'Genero', 
         'Obj_Fisico',
         'Act_Fisica',
-        'Complexion_Fisica'        
+        'Complexion_Fisica',
+        'Fecha'       
     ]
     
     def __init__(self, parent=None):
         super().__init__(parent)
-        
+                    
         # Desarrollo de la tabla
-        self.table = QTableWidget(0, 11)
+        self.table = QTableWidget(0, 12)
         self.table.setHorizontalHeaderLabels(self.mandatoryColumns)
         self.table.setAlternatingRowColors(True)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
@@ -95,6 +96,11 @@ class Leccion(QWidget):
         self.CompFisica = QComboBox()
         self.CompFisica.setPlaceholderText("Complexión Física. Selecciona una opción")
         
+        self.lblFecha = QLabel("Fecha:")
+        self.txtFecha = QDateEdit()
+        self.txtFecha.setDisplayFormat("yyyy-MM-dd")
+        self.txtFecha.setSpecialValueText("Fecha. Indica la fecha actual")
+        self.txtFecha.setDate(QDate.currentDate())
         
         # Desarrollo de widgets
         grid = QGridLayout()
@@ -149,7 +155,9 @@ class Leccion(QWidget):
             ])
         grid.addWidget(self.lblCompFisica, 10, 0)
         grid.addWidget(self.CompFisica, 10, 1)  
-
+        grid.addWidget(self.lblFecha, 11, 0)
+        grid.addWidget(self.txtFecha, 11, 1)
+            
         # Botones
         btnCargarCSV = QPushButton('Cargar CSV distinto')
         btnCargarCSV.clicked.connect(self.readNewCSV)
@@ -171,7 +179,7 @@ class Leccion(QWidget):
         vbx.addLayout(hbx)
         vbx.setAlignment(Qt.AlignTop)
         vbx.addWidget(self.table)
-
+        
         # Título e Icono app
         self.setWindowTitle("GymkoFit - La meta eres tú")
         self.setWindowIcon(QtGui.QIcon(r'img\gymkofit.png'))
@@ -180,7 +188,8 @@ class Leccion(QWidget):
         self.resize(362, 320)
         self.setLayout(vbx)
         self.cargarDatosDesdeCSV(FileHandler.createCSVIfNotExisting(self.csvPath, ",".join(self.mandatoryColumns)))
-
+        
+        
     # Definición de métodos de acción para interactuar con la base de datos:
     # Acción de cargar los registos de ejemplo definido más abajo.
     def readNewCSV(self):
@@ -224,6 +233,7 @@ class Leccion(QWidget):
             
     def insertarDatos(self) -> None:
         try:
+            fecha = self.txtFecha.date().toString("yyyy-MM-dd")
             valuesToAdd = (
                 self.txtID.text(),
                 self.txtName.text(),
@@ -235,7 +245,9 @@ class Leccion(QWidget):
                 self.Genero.currentText(),
                 self.ObjFisico.currentText(),
                 self.Actividad.currentText(),
-                self.CompFisica.currentText()  
+                self.CompFisica.currentText(),
+                #self.Fecha.currentDate()  
+                fecha   
             )
             dataMapped = dict(zip(self.mandatoryColumns, valuesToAdd))
             # Comprueba que el ID introducido no exista

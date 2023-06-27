@@ -1,8 +1,8 @@
-ID,Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,Genero,Obj_Fisico,Act_Fisica,Complexion_Fisica
-48280087M,Rocio,Roldan,delaRosa,30,60.0,159,Femenino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
-48280088M,Roberto,Vargas,Gonzalez,49,80.0,190,Masculino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
-48280089M,Javier,Castillo,Sanchez,35,84.0,175,Masculino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
-48280090M,Alberto,Quero,Moreno,35,90.0,105,Masculino,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
-48280091M,Joel,Rodriguez,Pardo,28,70.0,180,NoBinario,Definición,Altorendimiento(Competiciones),Ectomorfo
-48280092M,Noelia,Navarro,Lopez,33,60.0,165,Femenino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
-77832466Y,Shaila,Gibert,Marco,22,55.0,156,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+ID,Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,Genero,Obj_Fisico,Act_Fisica,Complexion_Fisica,Fecha
+48280087M,Rocio,Roldan,delaRosa,30,60.0,159,Femenino,Rendimiento,Muy activo(Másde3díasalgunaact.física),Mesomorfo,2023-06-27
+48280088M,Roberto,Vargas,Gonzalez,49,80.0,190,Masculino,Perderpeso,Muy sedentario(Másde12horassinact.física),Endomorfo,2023-06-27
+48280089M,Javier,Castillo,Sanchez,35,84.0,175,Masculino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo,2023-06-27
+48280090M,Alberto,Quero,Moreno,35,90.0,105,Masculino,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo,2023-06-27
+48280091M,Joel,Rodriguez,Pardo,28,70.0,180,NoBinario,Definición,Alto rendimiento(Competiciones),Ectomorfo,2023-06-27
+48280092M,Noelia,Navarro,Lopez,33,60.0,165,Femenino,Salud,Medianamente activo(1-2díasalgunaact.física),Mesomorfo,2023-06-27
+77832466Y,Shaila,Gibert,Marco,22,55.0,156,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),2023-06-27
