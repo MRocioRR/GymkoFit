@@ -1,44 +1,11 @@
 # GymkoFit
 
-**Este código es una aplicación de escritorio desarrollada con PyQt5 para interactuar con una base de datos SQLite.**
+El código proporcionado es una aplicación de escritorio desarrollada en PyQt5 que interactúa con una base de datos SQLite. La aplicación se llama "Gymkofit" y permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en una tabla de datos.
 
-Aquí tienes una descripción paso a paso del código:
+La interfaz de usuario consta de varios campos de entrada de texto y menús desplegables que permiten ingresar información sobre usuarios de un gimnasio, como su identificación, nombre, apellidos, edad, peso, altura, género, objetivo físico, actividad física y complexión física. También hay botones para cargar un archivo CSV, insertar datos, y eliminar registros seleccionados.
 
-1. Importación de las librerías necesarias:
+El código utiliza la biblioteca PyQt5 para crear la interfaz gráfica y la biblioteca SQLite para interactuar con la base de datos. La clase principal es Leccion, que hereda de QWidget y contiene métodos para cargar datos desde un archivo CSV, mostrar los datos en una tabla, eliminar registros y insertar nuevos registros en la base de datos.
 
-- *sys*: Proporciona funciones y variables que interactúan con el intérprete de Python.
-- *QSql* (parte de PyQt5.QtSql): Proporciona clases para trabajar con bases de datos.
-- *Qt, QModelIndex* (parte de PyQt5.QtCore): Proporciona clases centrales para la funcionalidad principal de PyQt5.
-- *QtGui* (parte de PyQt5): Proporciona clases para ventanas, gráficos, fuentes y otros elementos de la interfaz de usuario.
-- *QWidget, QApplication, QVBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, QMessageBox, QHBoxLayout, QLineEdit, QLabel, QGridLayout* (parte de PyQt5.QtWidgets): Proporciona clases para crear interfaces de usuario.
+El código también incluye algunas secciones comentadas relacionadas con una posible implementación de la base de datos SQLite utilizando QSqlDatabase. Estas secciones están marcadas con "TODO" y podrían ser implementadas en futuras iteraciones del proyecto.
 
-2. Definición de la clase Leccion que hereda de QWidget:
-
-- *__init__(self, parent=None)*: Constructor de la clase. Se inicializan los widgets, se configuran las propiedades de la ventana y se conectan las señales con los slots correspondientes.
-
-3. Configuración de la interfaz de usuario en el constructor de la clase:
-
-- Se crean los widgets necesarios, como la tabla *(QTableWidget)* y los campos de entrada *(QLineEdit)* y etiquetas *(QLabel)*.
-- Se establecen las propiedades de los widgets, como el número de columnas y las etiquetas de la tabla, el texto de marcador de posición en los campos de entrada, etc.
-- Se crean y configuran los botones *(QPushButton)* para cargar datos, insertar registros y eliminar registros.
-- Se organizan los widgets en una disposición de cuadrícula *(QGridLayout)* y una disposición horizontal *(QHBoxLayout)*.
-- Se establece la disposición vertical *(QVBoxLayout)* principal de la ventana y se agregan los widgets a ella.
-- Se configuran el título y el icono de la aplicación.
-
-4. Definición de métodos de acción para interactuar con la base de datos:
-
-- *cargarDatos(self, event)*: Recupera los registros de la base de datos y los muestra en la tabla.
-- *insertarDatos(self, event)*: Inserta un nuevo registro en la base de datos utilizando los valores ingresados en los campos de entrada.
-- *eliminarDatos(self, event)*: Elimina el registro seleccionado de la base de datos y de la tabla.
-
-5. Métodos auxiliares para la conexión y creación de la base de datos:
-
-- *db_connect(self, filename, server)*: Conecta con la base de datos SQLite utilizando el nombre de archivo proporcionado.
-- *db_create(self)*: Crea una tabla de ejemplo en la base de datos y agrega algunos registros de muestra.
-
-4. Método principal y ejecución de la aplicación:
-
-- *if __name__ == '__main__'*: Verifica si el archivo se está ejecutando directamente.
-- *app = QApplication(sys.argv)*: Crea una instancia de la aplicación Qt.
-- *ejm = Leccion()*: Crea una instancia de la clase Leccion.
-- *ejm.init('datafile', 'QSQLITE')*: Inicializa la base de datos y crea la tabla de ejemplo si no existe.
+En resumen, este código es una aplicación de escritorio que utiliza PyQt5 y SQLite para interactuar con una base de datos y realizar operaciones CRUD en una tabla de datos relacionada con usuarios de un gimnasio.
