@@ -1,0 +1,51 @@
+ID,Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,Genero,Obj_Fisico,Act_Fisica,Complexion_Fisica
+95702350N,Nombre5,Apellido8,Apellido7,22,71,19,Masculino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+28360591D,Nombre4,Apellido3,Apellido6,30,81,19,Masculino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+74681264X,Nombre5,Apellido7,Apellido10,41,74,19,No Binario,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
+69875420G,Nombre5,Apellido6,Apellido3,50,69,17,No Binario,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+10456238C,Nombre5,Apellido1,Apellido10,22,72,19,Masculino,Definición,Altorendimiento(Competiciones),Ectomorfo
+31609547Y,Nombre10,Apellido4,Apellido3,21,64,15,Femenino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+82960731Q,Nombre2,Apellido7,Apellido3,27,79,16,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+61249738T,Nombre10,Apellido3,Apellido3,56,78,16,Masculino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+47532816V,Nombre8,Apellido7,Apellido2,40,71,16,No Binario,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+89231475L,Nombre1,Apellido5,Apellido7,50,79,18,Masculino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
+59813624R,Nombre10,Apellido5,Apellido4,27,69,18,No Binario,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+21954387J,Nombre3,Apellido2,Apellido9,36,93,15,No Binario,Definición,Altorendimiento(Competiciones),Ectomorfo
+40923587S,Nombre3,Apellido7,Apellido4,47,56,15,No Binario,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+83512964F,Nombre9,Apellido6,Apellido3,20,91,19,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+72193508W,Nombre10,Apellido8,Apellido3,20,82,18,Masculino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+93780142A,Nombre5,Apellido2,Apellido2,41,87,17,Masculino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+67841359P,Nombre7,Apellido4,Apellido1,27,56,18,Masculino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
+50389614H,Nombre1,Apellido6,Apellido9,56,96,16,Masculino,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+12876093B,Nombre3,Apellido4,Apellido7,34,86,17,Masculino,Definición,Altorendimiento(Competiciones),Ectomorfo
+30471829N,Nombre7,Apellido10,Apellido1,49,87,16,Femenino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+61749280X,Nombre9,Apellido8,Apellido5,40,92,15,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+46280915G,Nombre1,Apellido8,Apellido8,55,75,15,Masculino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+82045739D,Nombre10,Apellido4,Apellido9,20,52,18,Femenino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+95702485R,Nombre7,Apellido6,Apellido8,50,80,16,Femenino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
+20781346Y,Nombre2,Apellido5,Apellido8,25,54,15,No Binario,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+39450816Q,Nombre7,Apellido3,Apellido6,47,65,16,Femenino,Definición,Altorendimiento(Competiciones),Ectomorfo
+83174906T,Nombre7,Apellido9,Apellido10,36,74,18,Femenino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+54271039L,Nombre4,Apellido1,Apellido1,47,52,16,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+92804657J,Nombre6,Apellido7,Apellido6,24,72,19,Femenino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+61734592X,Nombre3,Apellido5,Apellido5,38,61,15,Femenino,Definición,Altorendimiento(Competiciones),Ectomorfo
+48036957W,Nombre2,Apellido9,Apellido3,23,92,17,Masculino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+50382914A,Nombre4,Apellido5,Apellido4,52,69,15,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+12859367V,Nombre1,Apellido3,Apellido5,25,67,18,No Binario,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+60184729S,Nombre4,Apellido5,Apellido6,49,71,16,Masculino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+94201835D,Nombre3,Apellido7,Apellido8,23,53,19,Masculino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+21539468C,Nombre5,Apellido7,Apellido1,53,86,19,Femenino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+60957284E,Nombre8,Apellido9,Apellido10,46,82,17,No Binario,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+10857293L,Nombre1,Apellido9,Apellido4,56,57,16,Femenino,Perderpeso,Sedentario(Entre12-8horassinact.física),Mesomorfo
+80943756K,Nombre2,Apellido6,Apellido6,43,84,16,No Binario,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+72038594M,Nombre4,Apellido8,Apellido8,18,65,19,No Binario,Definición,Altorendimiento(Competiciones),Ectomorfo
+43570986U,Nombre6,Apellido7,Apellido10,21,82,15,Femenino,Definición,Altorendimiento(Competiciones),Ectomorfo
+93780241H,Nombre10,Apellido8,Apellido1,25,50,15,Masculino,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+61940358Z,Nombre1,Apellido8,Apellido4,43,78,16,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+30541798P,Nombre5,Apellido7,Apellido4,45,75,17,No Binario,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
+71089245B,Nombre1,Apellido9,Apellido5,39,64,19,Femenino,Perderpeso,Muysedentario(Másde12horassinact.física),Endomorfo
+58694273R,Nombre8,Apellido5,Apellido7,28,77,16,No Binario,Definición,Activo(Entre2-3díasalgunaact.física),Endomorfo
+82941706F,Nombre4,Apellido5,Apellido3,53,73,19,No Binario,Definición,Altorendimiento(Competiciones),Ectomorfo
+40285936N,Nombre5,Apellido8,Apellido1,47,61,16,No Binario,Salud,Medianamenteactivo(1-2díasalgunaact.física),Mesomorfo
+52068713J,Nombre2,Apellido4,Apellido6,47,96,16,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa)
+79310284G,Nombre7,Apellido1,Apellido9,33,63,19,Masculino,Rendimiento,Muyactivo(Másde3díasalgunaact.física),Mesomorfo
