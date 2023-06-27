@@ -245,8 +245,7 @@ class Leccion(QWidget):
                 self.Genero.currentText(),
                 self.ObjFisico.currentText(),
                 self.Actividad.currentText(),
-                self.CompFisica.currentText(),
-                #self.Fecha.currentDate()  
+                self.CompFisica.currentText(), 
                 fecha   
             )
             dataMapped = dict(zip(self.mandatoryColumns, valuesToAdd))
@@ -273,8 +272,7 @@ class Leccion(QWidget):
         except Exception as error:
             QMessageBox.warning(self, "Añadido", "Los datos fueron registrados pero no es posible visualizarlos en la tabla "\
                 f"debido a un error inesperado: {error}")
-            
-        
+                   
 # TODO: si implementamos SQLite, lo metemos, por ahora commented
 #     # Métodos auxiliares para la conexión y creación de la base de datos:    
 #     def db_connect(self, filename, server):
