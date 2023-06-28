@@ -23,10 +23,11 @@ class Leccion(QWidget):
         super().__init__(parent)
         
         # Desarrollo de la tabla
-        self.table = QTableWidget(0, 11)
+        self.table = QTableWidget(0, 12)
         self.table.setHorizontalHeaderLabels(['ID', 'Nombre', 'P_Apellido', 'S_Apellido',
-                                              'Edad', 'Peso', 'Altura', 'Genero', 
-                                              'Obj_Fisico', 'Act_Fisica', 'Complexion_Fisica'])
+                                      'Edad', 'Peso', 'Altura', 'Genero', 
+                                      'Obj_Fisico', 'Act_Fisica', 'Complexion_Fisica', 'Peso_Diario'])
+
         self.table.setAlternatingRowColors(True)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
@@ -78,6 +79,10 @@ class Leccion(QWidget):
         self.CompFisica = QComboBox()
         self.CompFisica.setPlaceholderText("Complexión Física. Selecciona una opción")
         
+        self.lblPesoDiario = QLabel("Peso Diario:")
+        self.txtPesoDiario = QLineEdit()
+        self.txtPesoDiario.setPlaceholderText("Peso diario en Kg.")
+
         
         # Desarrollo de widgets
         grid = QGridLayout()
@@ -251,6 +256,12 @@ class Leccion(QWidget):
         query.addBindValue(actividad)
         query.addBindValue(compfisica)
         query.exec()
+
+        peso_diario = float(self.txtPesoDiario.text())
+        self.table.setItem(index, 11, QTableWidgetItem(str(peso_diario)))
+        query.prepare("INSERT INTO usuarios (ID, Nombre, P_Apellido, S_Apellido, Edad, Peso, Altura, Genero, Objetivo_Fisico, Actividad_Fisica, Complexion_Fisica, Peso_Diario) "
+              "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        query.addBindValue(peso_diario)
 
         if not query.exec():
             QMessageBox.critical(self, "Error", "No se pudo insertar el registro en la base de datos.")
