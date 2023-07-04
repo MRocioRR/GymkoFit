@@ -21,6 +21,79 @@ from pandas import concat, DataFrame
 
 # ---------------------------- APLICACION -------------------------------------------------
 
+
+#-------------------------AYUDA DE USO APLICACION------------------------------------------
+class HelpWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle('Ayuda')
+        self.setGeometry(100, 100, 300, 200)
+
+        layout = QVBoxLayout()
+
+        label = QLabel('''
+                        ¡Bienvenido a Gymkofit, tu compañero de entrenamiento personalizado
+                         en línea! Nuestra aplicación web está diseñada para ayudarte a llevar
+                         un control efectivo de tus rutinas y alcanzar tus objetivos de
+                          acondicionamiento físico de manera óptima. Sabemos que cada persona es única,
+                         por lo que hemos desarrollado un sistema inteligente que se adapta a tu estado 
+                         físico individual y te proporciona recomendaciones personalizadas para lograr
+                         resultados tangibles. 
+                         Ya sea que desees perder peso, mejorar tu rendimiento físico, aumentar tu masa
+                         muscular o simplemente mantener una buena salud física, Gymkofit está aquí
+                         para ayudarte en cada paso del camino. Nuestra plataforma te permite crear
+                         rutinas de entrenamiento adecuadas a tus necesidades y preferencias, y te
+                         ofrece un seguimiento detallado de tu progreso para que puedas visualizar
+                         tus avances.
+                         Ya sea que desees perder peso, mejorar tu rendimiento físico, aumentar tu masa
+                         muscular o simplemente mantener una buena salud física, Gymkofit está aquí para
+                         ayudarte en cada paso del camino. Nuestra plataforma te permite crear rutinas de
+                         entrenamiento adecuadas a tus necesidades y preferencias, y te ofrece un seguimiento
+                         detallado de tu progreso para que puedas visualizar tus avances.
+                         No importa cuál sea tu nivel de condición física actual, Gymkofit te brinda las
+                         herramientas necesarias para alcanzar tus metas de manera segura y eficiente.
+                         ¡Prepárate para descubrir una nueva forma de entrenar y maximizar tu potencial!
+                         Únete a nosotros hoy mismo y comienza a hacer realidad tus sueños de
+                         acondicionamiento físico con Gymkofit.
+                         
+                         
+                         El usuario que utilize la aplicación debe introdicir su ID, que es proporcionado
+                         por el gimnasio, con el cual todos sus datos van a quedar vinculados.
+
+                         Después introducirá Nombre y Apellidos en los campos que indica la aplicación. De 
+                         esta forma la información asociada a un ID queda también asociada a una persona concreta.
+
+                         También será requerido Edad, Peso y Altura. Donde la edad debe ser introducida en 
+                         Kilogramos y la altura en centimetros, y por supuesto todo ello en números.
+
+                         Finalemte, los desplegables de Género, Objetivo Físico, Actividad Física y 
+                         Complexión Física deben ser elegidos de manera que se ajusten lo mejor posible a cada
+                         usuario.
+
+                         Tenga en cuenta que esta información debe ser lo más real posible ya que será utilizada con
+                         el fin de generar la rutina de ejercicios ideal para el usuario. Si los datos no son precisos, 
+                         entonces la rutina puede ser contraproducente para el usuario.
+
+                         Cuando todos estos campos han sido rellenados pulse el boton Insertar para insertarlos
+                         en la base de datos. Si se ha confundido en algún campo puede pulsar en Cargar CSV, donde verá
+                         todos los registros, seleccione el que desee eliminar y pulse el boton Eliminar.
+                         
+
+                         Esencialmente esto es todo lo que necesita saber para utilizar la aplicación. 
+                         ¡¡Disfrute de la experiencia GymkoFit!!
+                            ''')
+        layout.addWidget(label)
+
+        close_button = QPushButton('Cerrar')
+        close_button.clicked.connect(self.close)
+        layout.addWidget(close_button)
+
+        self.setLayout(layout)
+
+#----------------------------FIN AYUDA APLICACIÓN-------------------------------------------------------------------
+
+
 # Definición de la clase Leccion que hereda de QWidget:
 class Leccion(QWidget):
     csvPath:str = "usuarios.csv"
@@ -168,11 +241,15 @@ class Leccion(QWidget):
         btnEliminar = QPushButton('Eliminar')
         btnEliminar.clicked.connect(self.eliminarDatos)
         
+        help_button = QPushButton('Ayuda')
+        help_button.clicked.connect(self.open_help_window)
+        
         # Acciones
         hbx = QHBoxLayout()
         hbx.addWidget(btnCargarCSV)
         hbx.addWidget(btnInsertar)
         hbx.addWidget(btnEliminar)
+        hbx.addWidget(help_button)
 
         vbx = QVBoxLayout()
         vbx.addLayout(grid)
@@ -191,6 +268,10 @@ class Leccion(QWidget):
         
         
     # Definición de métodos de acción para interactuar con la base de datos:
+    #Boton ayuda.
+    def open_help_window(self):
+        self.help_window = HelpWindow()
+        self.help_window.show()
     # Acción de cargar los registos de ejemplo definido más abajo.
     def readNewCSV(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Seleccionar archivo CSV", "", "Archivos CSV (*.csv)")
