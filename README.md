@@ -1,44 +1,26 @@
 # GymkoFit
 
-**Este código es una aplicación de escritorio desarrollada con PyQt5 para interactuar con una base de datos SQLite.**
+El código proporcionado es una aplicación de escritorio desarrollada en PyQt5 que interactúa con una base de datos SQLite. La aplicación se llama "Gymkofit" y permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en una tabla de datos. Gestionando datos de usuarios de un gimnasio
 
-Aquí tienes una descripción paso a paso del código:
+La interfaz de usuario consta de varios campos de entrada de texto y menús desplegables que permiten ingresar información sobre usuarios de un gimnasio, como su identificación, nombre, apellidos, edad, peso, altura, género, objetivo físico, actividad física y complexión física. También hay botones para cargar un archivo CSV, insertar datos, y eliminar registros seleccionados.
 
-1. Importación de las librerías necesarias:
+Aquí tienes una descripción de las partes principales del código:
 
+1. Importación de librerías: Se importan las librerías necesarias, incluyendo las clases y funciones necesarias de PyQt5, así como otras dependencias como pandas para trabajar con los datos.
 - *sys*: Proporciona funciones y variables que interactúan con el intérprete de Python.
 - *QSql* (parte de PyQt5.QtSql): Proporciona clases para trabajar con bases de datos.
 - *Qt, QModelIndex* (parte de PyQt5.QtCore): Proporciona clases centrales para la funcionalidad principal de PyQt5.
 - *QtGui* (parte de PyQt5): Proporciona clases para ventanas, gráficos, fuentes y otros elementos de la interfaz de usuario.
 - *QWidget, QApplication, QVBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, QMessageBox, QHBoxLayout, QLineEdit, QLabel, QGridLayout* (parte de PyQt5.QtWidgets): Proporciona clases para crear interfaces de usuario.
+- *csv*: El módulo pandas es una biblioteca de análisis de datos en Python. La importación de DataFrame permite crear y manipular estructuras de datos tabulares llamadas DataFrames, que son útiles para trabajar con conjuntos de datos. La importación de read_csv permite leer datos de archivos CSV y cargarlos en un DataFrame para su posterior procesamiento y análisis.
+- *os*: El módulo os en Python proporciona una forma de interactuar con el sistema operativo. El submódulo path se ocupa específicamente de manejar rutas de archivos y directorios, como la manipulación de rutas, comprobación de existencia de archivos, etc.
+  
+2. Definición de la clase Leccion: Esta clase hereda de QWidget y representa la interfaz de usuario de la aplicación. Contiene widgets como etiquetas, campos de texto, botones y una tabla para mostrar los datos de los usuarios.
 
-2. Definición de la clase Leccion que hereda de QWidget:
+3. Configuración de la interfaz de usuario: En el constructor de la clase Leccion, se configuran los widgets y su disposición utilizando el sistema de diseño de cuadrícula (QGridLayout) y el sistema de diseño vertical (QVBoxLayout). También se establece el título y el ícono de la aplicación.
 
-- *__init__(self, parent=None)*: Constructor de la clase. Se inicializan los widgets, se configuran las propiedades de la ventana y se conectan las señales con los slots correspondientes.
+4. Acciones de interacción con la base de datos: El código proporciona métodos para cargar datos desde un archivo CSV, mostrar los datos en la tabla, eliminar registros y agregar nuevos registros a la base de datos.
 
-3. Configuración de la interfaz de usuario en el constructor de la clase:
+5. Método principal y ejecución de la aplicación: En la sección final del código, se crea una instancia de QApplication y se muestra la ventana principal de la aplicación (Leccion). También se establece la conexión a la base de datos SQLite, si se implementa.
 
-- Se crean los widgets necesarios, como la tabla *(QTableWidget)* y los campos de entrada *(QLineEdit)* y etiquetas *(QLabel)*.
-- Se establecen las propiedades de los widgets, como el número de columnas y las etiquetas de la tabla, el texto de marcador de posición en los campos de entrada, etc.
-- Se crean y configuran los botones *(QPushButton)* para cargar datos, insertar registros y eliminar registros.
-- Se organizan los widgets en una disposición de cuadrícula *(QGridLayout)* y una disposición horizontal *(QHBoxLayout)*.
-- Se establece la disposición vertical *(QVBoxLayout)* principal de la ventana y se agregan los widgets a ella.
-- Se configuran el título y el icono de la aplicación.
-
-4. Definición de métodos de acción para interactuar con la base de datos:
-
-- *cargarDatos(self, event)*: Recupera los registros de la base de datos y los muestra en la tabla.
-- *insertarDatos(self, event)*: Inserta un nuevo registro en la base de datos utilizando los valores ingresados en los campos de entrada.
-- *eliminarDatos(self, event)*: Elimina el registro seleccionado de la base de datos y de la tabla.
-
-5. Métodos auxiliares para la conexión y creación de la base de datos:
-
-- *db_connect(self, filename, server)*: Conecta con la base de datos SQLite utilizando el nombre de archivo proporcionado.
-- *db_create(self)*: Crea una tabla de ejemplo en la base de datos y agrega algunos registros de muestra.
-
-4. Método principal y ejecución de la aplicación:
-
-- *if __name__ == '__main__'*: Verifica si el archivo se está ejecutando directamente.
-- *app = QApplication(sys.argv)*: Crea una instancia de la aplicación Qt.
-- *ejm = Leccion()*: Crea una instancia de la clase Leccion.
-- *ejm.init('datafile', 'QSQLITE')*: Inicializa la base de datos y crea la tabla de ejemplo si no existe.
+6. El código proporcionado se encuentra en su estado actual y puede requerir ciertas modificaciones o complementos dependiendo de tus necesidades y del entorno en el que desees ejecutar la aplicación.
