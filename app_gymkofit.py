@@ -168,12 +168,14 @@ class Leccion(QWidget):
         self.lblCompFisica = QLabel("Complexión Física:")
         self.CompFisica = QComboBox()
         self.CompFisica.setPlaceholderText("Complexión Física. Selecciona una opción")
-        
         self.lblFecha = QLabel("Fecha:")
         self.txtFecha = QDateEdit()
         self.txtFecha.setDisplayFormat("yyyy-MM-dd")
         self.txtFecha.setSpecialValueText("Fecha. Indica la fecha actual")
         self.txtFecha.setDate(QDate.currentDate())
+        self.lblPesoDiario = QLabel("Peso Diario:")
+        self.txtPesoDiario = QLineEdit()
+        self.txtPesoDiario.setPlaceholderText("Peso diario en Kg.")
         
         # Desarrollo de widgets
         grid = QGridLayout()
@@ -260,20 +262,17 @@ class Leccion(QWidget):
         # Título e Icono app
         self.setWindowTitle("GymkoFit - La meta eres tú")
         self.setWindowIcon(QtGui.QIcon(r'img\gymkofit.png'))
-        # TODO: queremos implementar esto o not needed?
-        # self.init("usuarios.db", "QSQLITE")
         self.resize(362, 320)
         self.setLayout(vbx)
         self.cargarDatosDesdeCSV(FileHandler.createCSVIfNotExisting(self.csvPath, ",".join(self.mandatoryColumns)))
-        
-        
-    # Definición de métodos de acción para interactuar con la base de datos:
-    #Boton ayuda.
+            
     def open_help_window(self):
+        # Boton ayuda.
         self.help_window = HelpWindow()
         self.help_window.show()
-    # Acción de cargar los registos de ejemplo definido más abajo.
+        
     def readNewCSV(self):
+        # Acción de cargar los registos de ejemplo definido más abajo.
         filename, _ = QFileDialog.getOpenFileName(self, "Seleccionar archivo CSV", "", "Archivos CSV (*.csv)")
         self.cargarDatosDesdeCSV(filename)        
 
@@ -295,8 +294,8 @@ class Leccion(QWidget):
                 item = QTableWidgetItem(str(self.readData.iloc[rowIndex, columnIndex]))
                 self.table.setItem(rowIndex, columnIndex, item)        
                     
-    # Acción de eliminar registros
     def eliminarDatos(self):
+        # Acción de eliminar registros        
         # Tenemos seteado SingleSelection        
         selected_row = self.table.currentRow()
         print(selected_row)
@@ -352,58 +351,12 @@ class Leccion(QWidget):
                 self.table.setItem(self.table.rowCount() - 1, columnIndex, item)        
         except Exception as error:
             QMessageBox.warning(self, "Añadido", "Los datos fueron registrados pero no es posible visualizarlos en la tabla "\
-                f"debido a un error inesperado: {error}")
-                   
-# TODO: si implementamos SQLite, lo metemos, por ahora commented
-#     # Métodos auxiliares para la conexión y creación de la base de datos:    
-#     def db_connect(self, filename, server):
-#         db = QSqlDatabase.addDatabase(server)
-#         db.setDatabaseName(filename)
-#         if not db.open():
-#             QMessageBox.critical(None, 
-#                     "Nose pudo establecer una conexión con la base de datos.",
-#                     "Este ejercicio necesita compatibilidad con SQLite.\n"
-#                     "Haga clic en Cancelar para salir.", QMessageBox.Cancel)
-#             return False
-#         return True
-
-#    # Creamos e insertamos nuevos registros
-#     def db_create(self):
-#         query = QSqlQuery()
-#         query.exec_("create table if not exists person(id int primary key, "
-#                     "primerapellido varchar(20), segundoapellido varchar(20), edad int, peso int, altura int, genero varchar(20), objfisico varchar(50), actividad varchar(50), compfisica varchar(50))")
-#         if query.isActive():
-#             print("Tabla creada correctamente")
-#         else:
-#             print("Error al crear la tabla:", query.lastError().text())
-            
-
-#     def init(self, filename, server):
-#         import os
-#         if not os.path.exists(filename):
-#             self.db_connect(filename, server)
-#             self.db_create()
-#         else:
-#             self.db_connect(filename, server)    
+                f"debido a un error inesperado: {error}")                    
     
 
-# Método principal y ejecución de la aplicación:
 if __name__ == '__main__':
+    # Método principal y ejecución de la aplicación:
     app = QApplication(sys.argv)
-    # TODO: just if SQLite implementation in sprint
-    # db = QSqlDatabase.addDatabase("QSQLITE")
-    # db.setDatabaseName("usuarios.db")
-    # if not db.open():
-    #     QMessageBox.critical(None, "Error", "No se pudo conectar a la base de datos.")
-    #     sys.exit(1)
-
-    # query = QSqlQuery(db)
-    # query.exec("CREATE TABLE IF NOT EXISTS usuarios (ID INTEGER PRIMARY KEY, Nombre TEXT, "
-    #            "P_Apellido TEXT, S_Apellido TEXT, Edad INTEGER, Peso REAL, Altura INTEGER, "
-    #            "Género TEXT, Objetivo_Físico TEXT, Actividad_Física TEXT, Complexión_Física TEXT)")
-
     window = Leccion()
-    # TODO: just if SQLite implementation in sprint
-    # window.db = db  # Asignar la conexión de la base de datos al objeto Leccion
     window.show()
     sys.exit(app.exec_())
