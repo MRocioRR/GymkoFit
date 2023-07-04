@@ -1,7 +1,51 @@
-ID, Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,G�nero,Obj_Fisico, Act_Fisica, Complexion_Fisica
-101,Rocio,Roldan,de la Rosa,30,60,159,Femenino,Rendimiento, Muy activo (M�s de 3 d�as alguna act.f�sica),Mesomorfo
-102,Roberto,Vargas,Gonzalez,49,80,190,Masculino,Perder peso,Muy sedentario (M�s de 12 horas sin act.f�sica),Endomorfo
-103,Javier,Castillo,Sanchez,35,84,175,Masculino,Perder peso,Sedentario (Entre 12 - 8 horas sin act.f�sica),Mesomorfo
-104,Alberto,Quero,Moreno,35,90,105,Masculino,Definici�n,Activo (Entre 2-3 d�as alguna act.f�sica) ,Endomorfo
-105,Joel,Rodriguez,Pardo,28,70,180,No Binario,Definici�n,Alto rendimiento (Competiciones) ,Ectomorfo
-106,Noelia,Navarro,Lopez,33,60,165,Femenino,Salud,Medianamente activo (1-2 d�as alguna act.f�sica),Mesomorfo
+ID,Nombre,P_Apellido,S_Apellido,Edad,Peso,Altura,Genero,Obj_Fisico,Act_Fisica,Complexion_Fisica,Fecha
+95702350N,Nombre5,Apellido8,Apellido7,22,71.0,180,Masculino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,01/04/2023
+28360591D,Nombre4,Apellido3,Apellido6,30,81.0,142,Masculino,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,02/04/2023
+74681264X,Nombre5,Apellido7,Apellido10,41,74.0,180,No Binario,Perderpeso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo,03/04/2023
+69875420G,Nombre5,Apellido6,Apellido3,50,69.0,156,No Binario,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,04/04/2023
+10456238C,Nombre5,Apellido1,Apellido10,22,72.0,192,Masculino,Definicián,Altorendimiento(Competiciones),Ectomorfo,05/04/2023
+31609547Y,Nombre10,Apellido4,Apellido3,21,64.0,152,Femenino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,06/04/2023
+82960731Q,Nombre2,Apellido7,Apellido3,27,79.0,180,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),07/04/2023
+61249738T,Nombre10,Apellido3,Apellido3,56,78.0,184,Masculino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,08/04/2023
+47532816V,Nombre8,Apellido7,Apellido2,40,71.0,180,No Binario,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,09/04/2023
+89231475L,Nombre1,Apellido5,Apellido7,50,79.0,170,Masculino,Perderpeso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo,10/04/2023
+59813624R,Nombre10,Apellido5,Apellido4,27,69.0,132,No Binario,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,11/04/2023
+21954387J,Nombre3,Apellido2,Apellido9,36,93.0,180,No Binario,Definicián,Alto rendimiento (Competiciones),Ectomorfo,12/04/2023
+40923587S,Nombre3,Apellido7,Apellido4,47,56.0,145,No Binario,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,13/04/2023
+83512964F,Nombre9,Apellido6,Apellido3,20,91.0,180,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),14/04/2023
+72193508W,Nombre10,Apellido8,Apellido3,20,82.0,140,Masculino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,15/04/2023
+93780142A,Nombre5,Apellido2,Apellido2,41,87.0,180,Masculino,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,16/04/2023
+67841359P,Nombre7,Apellido4,Apellido1,27,56.0,180,Masculino,Perderpeso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo,17/04/2023
+50389614H,Nombre1,Apellido6,Apellido9,56,96.0,180,Masculino,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,18/04/2023
+12876093B,Nombre3,Apellido4,Apellido7,34,86.0,180,Masculino,Definicián,Alto rendimiento (Competiciones),Ectomorfo,19/04/2023
+30471829N,Nombre7,Apellido10,Apellido1,49,87.0,134,Femenino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,20/04/2023
+61749280X,Nombre9,Apellido8,Apellido5,40,92.0,180,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),21/04/2023
+46280915G,Nombre1,Apellido8,Apellido8,55,75.0,180,Masculino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,22/04/2023
+82045739D,Nombre10,Apellido4,Apellido9,20,52.0,180,Femenino,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,23/04/2023
+95702485R,Nombre7,Apellido6,Apellido8,50,80.0,180,Femenino,Perderpeso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo,24/04/2023
+20781346Y,Nombre2,Apellido5,Apellido8,25,54.0,180,No Binario,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,25/04/2023
+39450816Q,Nombre7,Apellido3,Apellido6,47,65.0,180,Femenino,Definicián,Alto rendimiento (Competiciones),Ectomorfo,26/04/2023
+83174906T,Nombre7,Apellido9,Apellido10,36,74.0,180,Femenino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,27/04/2023
+54271039L,Nombre4,Apellido1,Apellido1,47,52.0,180,Femenino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),28/04/2023
+92804657J,Nombre6,Apellido7,Apellido6,24,72.0,180,Femenino,Rendimiento,Alto rendimiento (Competiciones),Mesomorfo,29/04/2023
+61734592X,Nombre3,Apellido5,Apellido5,38,61.0,180,Femenino,Definicián,Alto rendimiento (Competiciones),Ectomorfo,30/04/2023
+48036957W,Nombre2,Apellido9,Apellido3,23,92.0,180,Masculino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,01/05/2023
+50382914A,Nombre4,Apellido5,Apellido4,52,69.0,180,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),02/05/2023
+12859367V,Nombre1,Apellido3,Apellido5,25,67.0,180,No Binario,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,03/05/2023
+60184729S,Nombre4,Apellido5,Apellido6,49,71.0,180,Masculino,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,04/05/2023
+94201835D,Nombre3,Apellido7,Apellido8,23,53.0,180,Masculino,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),05/05/2023
+21539468C,Nombre5,Apellido7,Apellido1,53,86.0,180,Femenino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,06/05/2023
+60957284E,Nombre8,Apellido9,Apellido10,46,82.0,180,No Binario,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,07/05/2023
+10857293L,Nombre1,Apellido9,Apellido4,56,57.0,180,Femenino,Perderpeso,Sedentario (Entre 12 - 8 horas sin act.física),Mesomorfo,08/05/2023
+80943756K,Nombre2,Apellido6,Apellido6,43,84.0,180,No Binario,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,09/05/2023
+72038594M,Nombre4,Apellido8,Apellido8,18,65.0,180,No Binario,Definicián,Alto rendimiento (Competiciones),Ectomorfo,10/05/2023
+43570986U,Nombre6,Apellido7,Apellido10,21,82.0,180,Femenino,Definicián,Alto rendimiento (Competiciones),Ectomorfo,11/05/2023
+93780241H,Nombre10,Apellido8,Apellido1,25,50.0,180,Masculino,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,12/05/2023
+61940358Z,Nombre1,Apellido8,Apellido4,43,78.0,180,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),13/05/2023
+30541798P,Nombre5,Apellido7,Apellido4,45,75.0,180,No Binario,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,14/05/2023
+71089245B,Nombre1,Apellido9,Apellido5,39,64.0,180,Femenino,Perderpeso,Muy sedentario (Más de 12 horas sin act.física),Endomorfo,15/05/2023
+58694273R,Nombre8,Apellido5,Apellido7,28,77.0,180,No Binario,Definicián,Activo (Entre 2-3 días alguna act.física),Endomorfo,16/05/2023
+82941706F,Nombre4,Apellido5,Apellido3,53,73.0,180,No Binario,Definicián,Alto rendimiento (Competiciones),Ectomorfo,17/05/2023
+40285936N,Nombre5,Apellido8,Apellido1,47,61.0,180,No Binario,Salud,Medianamente activo (1-2 días alguna act.física),Mesomorfo,18/05/2023
+52068713J,Nombre2,Apellido4,Apellido6,47,96.0,180,No Binario,Ganar masa muscular,Muy sedentario (Más de 12 horas sin act.física),Endomorfo (constitución corporal gruesa),19/05/2023
+79310284G,Nombre7,Apellido1,Apellido9,33,63.0,180,Masculino,Rendimiento,Muy activo (Más de 3 días alguna act.física),Mesomorfo,20/05/2023
